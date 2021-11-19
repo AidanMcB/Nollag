@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "nollag-a89e2": {
+      "hosting": {
+        "nollag": [
+          "nollag-a89e2"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "nollag-a89e2"
+  }
+}

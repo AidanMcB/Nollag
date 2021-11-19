@@ -1,0 +1,28 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+
+  <div class="mb-3">
+    <label>First Name</label>
+    <input type="text" formControlName="firstName" class="form-control" placeholder="First Name" required>
+  </div>
+
+  <div class="mb-3">
+    <label>Last Name</label>
+    <input type="text" formControlName="lastName" class="form-control" placeholder="Last Name" required>
+  </div>
+
+  <div class="mb-3">
+    <label>Email</label>
+    <input type="text" formControlName="email" class="form-control" placeholder="Email Address" required>
+  </div>
+
+  <div class="mb-3">
+    <label>Password </label><i (click)="toggleHiddenPassword()" class="bi bi-eye"></i>
+    <input [type]="showPassword ? 'text' : 'password'" formControlName="password" class="form-control" placeholder="password" required>
+  </div>
+
+  <div class="mb-3">
+    <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Create</button>
+    <button type="reset" class="btn btn-danger" > Reset</button>
+  </div>
+
+</form>
