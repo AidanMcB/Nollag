@@ -1,3 +1,4 @@
+import { query } from "@angular/animations";
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { from } from "rxjs";
@@ -10,6 +11,12 @@ export class UserService {
   constructor(
     private _firestore: AngularFirestore
   ) {}
+
+  public getUserByNameAndPassword(firstName: string, password: string) {
+    return this._firestore.collection('user-collection', ref => ref.where('firstName', '==', firstName)
+    .where('password', '==', password))
+    .valueChanges({ idField: 'id' });
+  }
 
   public getUserDoc(id: string) {
     return this._firestore
@@ -26,12 +33,15 @@ export class UserService {
 
   // as Promise
   public createUser(user: User) {
+    const localStorageUser = user;
     return new Promise<any>((resolve, reject) => {
       this._firestore
         .collection('user-collection')
         .add(user)
-        localStorage.setItems("user", user)
-        .then((response: any )=> { console.log(response) }, ( error:any ) => reject(error));
+        .then((response: any )=> {
+          user.id = response.id;
+          localStorage.setItem("user", JSON.stringify(user));
+        }, ( error:any ) => reject(error));
     })
   }
 

@@ -23,14 +23,9 @@ export class AppComponent {
   ) {}
 
   ngOnInit() {
-    const id1 = this._activatedRoute.snapshot.paramMap.get('id');
-    const user = localStorage.getItem("user");
-    if (user!=null){
-      this._userService.getUserDoc(user).subscribe( res => {
-        this.userRef = res;
-       this.currentUser =  this.userRef;
-       localStorage.Item("user", this.currentUser)
-      })
+    let user = localStorage.getItem("user")
+    if(user!=null && user!="undefined"){
+    this.currentUser = JSON.parse(user)
     }
   }
   //setItem
@@ -38,6 +33,10 @@ export class AppComponent {
   //removeItem
 
   public printUser() {
-    console.log(localStorage)
+    let user = localStorage.getItem("user")
+    if(user!=null){
+    this.currentUser = JSON.parse(user)
+    console.log(this.currentUser)
+    }
   }
 }

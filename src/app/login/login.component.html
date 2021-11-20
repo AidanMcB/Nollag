@@ -1,4 +1,11 @@
-<h1> Log In Here</h1>
+<h1> Log In </h1>
+
+<div *ngIf="errorMessage.length > 0" class="alert alert-danger" role="alert">
+  <b> Log in Failed. </b>
+  <span>{{ errorMessage}}
+    Create a user <a href="/create-user" class="alert-link">by clicking here</a>
+  </span>
+</div>
 
 <form [formGroup]="userLoginForm" (ngSubmit)="onSubmit()" novalidate>
 
@@ -12,4 +19,6 @@
     <input [type]="showPassword ? 'text' : 'password'" formControlName="password" class="form-control" placeholder="password" required>
   </div>
 
-  </form>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>

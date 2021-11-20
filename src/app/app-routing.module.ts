@@ -8,7 +8,7 @@ import { UserPageComponent } from './user-page/user-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/create', pathMatch: 'full' },
-  { path: 'create', component: CreateUserComponent },
+  { path: 'create-user', component: CreateUserComponent },
   { path: 'list-users', component: ListUsersComponent },
   { path: 'update-user', component: EditUserComponent },
   { path: 'user/:id', component: UserPageComponent },

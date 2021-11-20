@@ -11,6 +11,7 @@ import { UserService } from '../services/user.service';
 export class LoginComponent implements OnInit {
 
   public showPassword: boolean = false;
+  public errorMessage: string = '';
 
   public userLoginForm = this._formBuilder.group({
     firstName: this._formBuilder.control(null),
@@ -28,16 +29,19 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmit() {
-    //if no user is logged in
-    // find a specific user based on firstname and password
-    // if that returns a user, login
-    // if that returns no user, "User not found"
-
+    this._userService.getUserByNameAndPassword(this.userLoginForm.value.firstName, this.userLoginForm.value.password)
+    .subscribe( (resp: any) => {
+      if(resp.length > 0){
+        localStorage.setItem("user", JSON.stringify(resp[0]))
+        this.errorMessage = '';
+      } else {
+   this.errorMessage = 'Check first name and password or '
+      }
+    })
   }
 
   public toggleHiddenPassword() {
     this.showPassword = !this.showPassword;
   }
-
 
 }
