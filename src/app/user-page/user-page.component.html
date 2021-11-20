@@ -1,1 +1,52 @@
-<p>user-page works!</p>
+<ng-container *ngIf="state$ | async as state">
+  <div class="user-page-container">
+    <ng-container *ngIf="state.user as user; else loadingOrNoUser">
+      Welcome {{ user.firstName}}!
+
+      <form [formGroup]="giftForm" (ngSubmit)="onSubmitGiftForm()" novalidate>
+
+
+        <div class="mb-3">
+          <label>Name</label>
+          <input type="text" formControlName="name" class="form-control" placeholder="what is it?" required>
+        </div>
+
+        <div class="mb-3">
+          <label>Price</label>
+          <input type="number" formControlName="price" class="form-control" placeholder="how much it be?" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add to Wish List</button>
+      </form>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let gift of state.gifts">
+            <th scope="row">{{gift.name}} </th>
+            <td>{{ gift.price | currency}}</td>
+            <td>{{ gift?.notes}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </ng-container>
+  </div>
+
+  <ng-template #loadingOrNoUser>
+    <ng-container *ngIf="state.errorMessage; else loading">
+      ERROR
+    </ng-container>
+
+    <ng-template #loading>
+      Loading...
+    </ng-template>
+
+  </ng-template>
+</ng-container>

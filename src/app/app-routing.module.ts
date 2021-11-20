@@ -7,12 +7,12 @@ import { LoginComponent } from './login/login.component';
 import { UserPageComponent } from './user-page/user-page.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/create', pathMatch: 'full' },
+  { path: '', redirectTo: '/create-user', pathMatch: 'full' },
   { path: 'create-user', component: CreateUserComponent },
   { path: 'list-users', component: ListUsersComponent },
   { path: 'update-user', component: EditUserComponent },
   { path: 'user/:id', component: UserPageComponent },
-  { path:'login', component: LoginComponent}
+  { path:'login', component: LoginComponent},
 ];
 
 @NgModule({

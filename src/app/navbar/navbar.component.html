@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <div class="ml-auto d-flex justify-content-between wider-flexbox">
-      <button  *ngIf="currentUser" class="ml-auto btn btn-outline-success">{{ currentUser.firstName }}</button>
+      <button  *ngIf="currentUser" class="ml-auto btn btn-outline-success" (click)="goToUserPage()">{{ currentUser.firstName }}</button>
       <button *ngIf="currentUser" class="ml-auto btn btn-outline-secondary ms-4" (click)="logOut()">Log Out</button>
       <button *ngIf="!currentUser" class="btn btn-outline-secondary" (click)="logIn()">Log In</button>
     </div>

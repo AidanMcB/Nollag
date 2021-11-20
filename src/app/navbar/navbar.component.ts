@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { User } from '../models/user.models';
+import { User } from '../models/user.interface';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -26,6 +26,13 @@ export class NavbarComponent implements OnInit {
 
   public print() {
     console.log(this.currentUser)
+  }
+  public goToUserPage() {
+    let user = localStorage.getItem("user");
+    if(user){
+      let uid = JSON.parse(user).id;
+      this._router.navigate([`user/${uid}`]);
+    }
   }
 
   public logOut() {

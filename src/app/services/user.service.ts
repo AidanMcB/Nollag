@@ -2,7 +2,7 @@ import { query } from "@angular/animations";
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { from } from "rxjs";
-import { User } from "../models/user.models";
+import { User } from "../models/user.interface";
 
 @Injectable({
   providedIn: 'root'

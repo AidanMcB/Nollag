@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 @Component({
-  selector: 'app-create-user',
+  selector: 'app--user',
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.scss']
 })
